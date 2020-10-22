@@ -3,7 +3,6 @@
 //program into distinct sections such that each section addresses a separate concern
 
 // Constants
-let basePrice = 10;
 let ingredients = {
   pepperoni: { name: 'pepperoni', price: 1 },
   mushrooms: { name: 'Mushrooms', price: 1 },
@@ -123,9 +122,42 @@ function renderButtons() {
     }
 }
 
+let basePrice = 10;
+
 function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
+  let totalPrice = basePrice;
+  document.querySelector("price-list").innerHTML = "";
+  // empties the <ul>  
+  // you can target it as aside ul
 
+  if(state.pepperoni) {
+    document.querySelector("price-list").innerHTML = `<li>$${ingredients.pepperoni.price} pepperoni</li>`
+    // HTML then reads it as normal code and recognizes elements
+    totalPrice += ingredients.pepperoni.price;
+  }
+
+  if(state.mushrooms) {
+    document.querySelector("price-list").innerHTML = `<li>$${ingredients.mushrooms.price} mushrooms</li>`
+    totalPrice += ingredients.mushrooms.price;
+  }
+
+  if(state.greenPeppers) {
+    document.querySelector("price-list").innerHTML = `<li>$${ingredients.greenPeppers.price} green peppers</li>`
+    totalPrice += ingredients.greenPeppers.price;
+  }
+
+  if(state.whiteSauce) {
+    document.querySelector("price-list").innerHTML = `<li>$${ingredients.whiteSauce.price} white sauce</li>`
+    totalPrice += ingredients.whiteSauce.price;
+  }
+
+  if(state.glutenFreeCrust) {
+    document.querySelector("price-list").innerHTML = `<li>$${ingredients.glutenFreeCrust.price} gluten free crust</li>`
+    totalPrice += ingredients.glutenFreeCrust.price;
+  }
+  
+  document.querySelector("total-price").innerHTML = `${totalPrice}`;
 }
 
 renderEverything();
